@@ -1,0 +1,18 @@
+@(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>JsMessages Scala Sample</title>
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+    </head>
+    <body>
+        @content
+
+        @playscalajs.html.scripts("/assets", projectName = "scalaJsPlayJsMessagesClient")
+        <script type="text/javascript">
+            MainJS().script();
+        </script>
+    </body>
+</html>
