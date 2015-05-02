@@ -9,3 +9,16 @@ and add this to your library dependencies
 
 <pre>"com.github.tomdom" %% "scala-js-play-jsmessages" % "0.1-SNAPSHOT"</pre>
 
+
+To test is run:
+
+<pre>sbt</pre>
+
+then
+
+<pre>project scalaJsPlayJsMessagesServer</pre>
+
+and
+
+<pre>run</pre>
+
