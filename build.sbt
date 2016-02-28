@@ -1,5 +1,5 @@
 val commonSettings = Seq(
-  scalaVersion := "2.11.6"
+  scalaVersion := "2.11.7"
 )
 
 import sbt.Keys._
@@ -11,7 +11,7 @@ lazy val scalaJsPlayJsMessages = project
     name := "scala-js-play-jsmessages",
     organization := "com.github.tomdom",
     version := "0.1-SNAPSHOT",
-    crossScalaVersions := Seq("2.10.5", "2.11.6"),
+    crossScalaVersions := Seq("2.10.6", "2.11.7"),
     publishTo := {
       val tomdomMvn = Path.userHome.absolutePath + "/projects/github/tomdom/tomdom-mvn"
       if (isSnapshot.value)
@@ -32,13 +32,17 @@ lazy val scalaJsPlayJsMessagesServer = (project in file("scalaJsPlayJsMessagesSe
     pipelineStages := Seq(scalaJSProd, gzip),
     libraryDependencies ++= Seq(
       jdbc,
-      anorm,
       cache,
       ws,
-      "com.vmunier" %% "play-scalajs-scripts" % "0.1.0",
-      "org.webjars" % "jquery" % "1.11.1",
-      "org.julienrf" %% "play-jsmessages" % "1.6.2"
-    )
+      specs2 % Test,
+      "com.vmunier" %% "play-scalajs-scripts" % "0.4.0",
+      "org.webjars" % "jquery" % "2.2.1",
+      "org.julienrf" %% "play-jsmessages" % "2.0.0"
+    ),
+    resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases",
+    // Play provides two styles of routers, one expects its actions to be injected, the
+    // other, legacy style, accesses its actions statically.
+    routesGenerator := InjectedRoutesGenerator
   )
   .enablePlugins(PlayScala)
   .aggregate(clients.map(projectToRef): _*)
@@ -52,8 +56,11 @@ lazy val scalaJsPlayJsMessagesClient = (project in file("scalaJsPlayJsMessagesCl
     unmanagedSourceDirectories in Compile := Seq((scalaSource in Compile).value),
     skip in packageJSDependencies := false,
     libraryDependencies ++= Seq(
-      "org.scala-js" %%% "scalajs-dom" % "0.8.0"
+      "org.scala-js" %%% "scalajs-dom" % "0.9.0"
     )
   )
   .enablePlugins(ScalaJSPlugin, ScalaJSPlay)
   .dependsOn(scalaJsPlayJsMessages)
+
+// loads the jvm project at sbt startup
+onLoad in Global := (Command.process("project scalaJsPlayJsMessagesServer", _: State)) compose (onLoad in Global).value
