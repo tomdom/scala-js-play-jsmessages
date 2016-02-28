@@ -4,9 +4,7 @@ import com.github.tomdom.scalajs.jsmessages._
 import org.scalajs.dom._
 
 import scala.collection.mutable.ListBuffer
-import scala.scalajs.js
 import scala.scalajs.js._
-import scala.scalajs.js.JSConverters._
 import scala.scalajs.js.annotation.JSExport
 
 @JSExport
