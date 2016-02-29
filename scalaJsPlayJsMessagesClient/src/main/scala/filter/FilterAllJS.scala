@@ -1,6 +1,7 @@
 package filter
 
-import com.github.tomdom.scalajs.jsmessages.all._
+import com.github.tomdom.scalajs.jsmessages.AllMessages
+import AllMessages._
 import org.scalajs.dom._
 
 import scala.collection.mutable.ListBuffer

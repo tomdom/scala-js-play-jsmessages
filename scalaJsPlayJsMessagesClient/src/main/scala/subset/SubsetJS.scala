@@ -1,6 +1,6 @@
 package subset
 
-import com.github.tomdom.scalajs.jsmessages._
+import com.github.tomdom.scalajs.jsmessages.Messages._
 import org.scalajs.dom._
 
 import scala.collection.mutable.ListBuffer
