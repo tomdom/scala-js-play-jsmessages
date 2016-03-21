@@ -7,8 +7,9 @@ To use it you need to add the following line to your build.sbt
 
 and add this to your library dependencies
 
-<pre>"com.github.tomdom" %% "scala-js-play-jsmessages" % "0.1-SNAPSHOT"</pre>
+<pre>"com.github.tomdom" %% "scala-js-play-jsmessages" % "0.2-SNAPSHOT"</pre>
 
+Like play framework 2.5.0 scala-js-play-jsmessages no longer supports scala 2.10.
 
 To test is run:
 
@@ -21,4 +22,3 @@ then
 and
 
 <pre>run</pre>
-
